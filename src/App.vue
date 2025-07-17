@@ -22,6 +22,7 @@
   </div>
 </template>
 
+<<<<<<< HEAD
 <script setup>
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
@@ -47,6 +48,37 @@ function removeTodo(id) {
 function toggleTodoCompletion(id) {
   store.dispatch('toggleTodoCompletion', id)
 }
+=======
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      newTodoText: ''
+    };
+  },
+  methods: {
+    addTodo() {
+      this.$store.dispatch('addTodo', this.newTodoText);
+      this.newTodoText = '';
+    },
+    removeTodo(id) {
+      this.$store.dispatch('removeTodo', id);
+    },
+    toggleTodoCompletion(id) {
+      this.$store.dispatch('toggleTodoCompletion', id);
+    }
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos;
+    },
+    remainingTodos() {
+      return this.$store.getters.remainingTodos;
+    }
+  }
+}
+>>>>>>> b70d77136f45e6cb0f7b1d8674c7b30c277838d3
 </script>
 
 <style>
