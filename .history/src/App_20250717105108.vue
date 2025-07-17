@@ -1,4 +1,6 @@
 <template>
+  <TodoList />
+
   <div id="app-container"> <h1>我的待辦事項</h1>
     <div class="input-section">
       <input type="text" v-model="newTodoText" @keyup.enter="addTodo" placeholder="新增待辦事項..">
@@ -23,15 +25,16 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import TodoList from './components/TodoList.vue'
 
 const store = useStore()
 
 const newTodoText = ref('')
 
 const todos = computed(() => store.state.todos)
-const remainingTodos = computed(() => store.getters.remainingTodos)
+const remainingTodos = computed(() => store.getteres.remainingTodos)
 
 function addTodo(){
   if (newTodoText.value.trim()){

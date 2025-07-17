@@ -21,30 +21,33 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
-
-const store = useStore()
-
-const newTodoText = ref('')
-
-const todos = computed(() => store.state.todos)
-const remainingTodos = computed(() => store.getters.remainingTodos)
-
-function addTodo(){
-  if (newTodoText.value.trim()){
-    store.dispatch('addTodo', newTodoText.value)
-    newTodoText.value = ''
+<script>
+export default {
+  data() {
+    return {
+      newTodoText: ''
+    }
+  },
+  computed: {
+    todos() {
+      return this.$store.state.todos
+    },
+    remainingTodos() {
+      return this.$store.getters.remainingTodos
+    }
+  },
+  methods: {
+    addTodo() {
+      this.$store.dispatch('addTodo', this.newTodoText)
+      this.newTodoText = ''
+    },
+    removeTodo(id) {
+      this.$store.dispatch('removeTodo', id)
+    },
+    toggleTodoCompletion(id) {
+      this.$store.dispatch('toggleTodoCompletion', id)
+    }
   }
-}
-
-function removeTodo(id) {
-  store.dispatch('removeTodo', id)
-}
-
-function toggleTodoCompletion(id) {
-  store.dispatch('toggleTodoCompletion', id)
 }
 </script>
 

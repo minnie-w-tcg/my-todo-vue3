@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -31,7 +31,7 @@ const store = useStore()
 const newTodoText = ref('')
 
 const todos = computed(() => store.state.todos)
-const remainingTodos = computed(() => store.getters.remainingTodos)
+const remainingTodos = computed(() => store.getteres.remainingTodos)
 
 function addTodo(){
   if (newTodoText.value.trim()){
