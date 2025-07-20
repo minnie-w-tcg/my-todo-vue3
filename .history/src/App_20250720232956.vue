@@ -21,7 +21,7 @@
 <script>
 import TimerDisplay from './components/TimerDisplay.vue';
 import ModeSelector from './components/ModeSelector.vue';
-import Controls from './components/PomodoroControls.vue.vue';
+import Controls from './components/Controls.vue';
 
 export default {
   name: 'App',
@@ -51,8 +51,8 @@ export default {
   },
   watch: {
     // 監聽模式變化，自動重置時間
-    currentMode() {
-      this.resetTimer(); 
+    currentMode(newMode) {
+      this.resetTimer(); // 切換模式時，重置為新模式的初始時間
     }
   },
   methods: {
@@ -84,11 +84,13 @@ export default {
     handleTimeUp() {
       // 時間結束時的處理
       alert(`${this.currentMode === 'pomodoro' ? '番茄工作' : (this.currentMode === 'shortBreak' ? '短休息' : '長休息')}時間到！`);
-      if (this.currentMode === 'pomodoro') {
-          this.changeMode('shortBreak'); 
-        } else {
-          this.changeMode('pomodoro'); 
-        }
+      // 這裡可以播放音效、發送通知、或自動切換模式
+      // 例如：
+      // if (this.currentMode === 'pomodoro') {
+      //   this.changeMode('shortBreak'); // 工作結束自動轉短休息
+      // } else {
+      //   this.changeMode('pomodoro'); // 休息結束自動轉工作
+      // }
     }
   },
   beforeUnmount() {

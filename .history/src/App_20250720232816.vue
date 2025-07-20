@@ -21,7 +21,7 @@
 <script>
 import TimerDisplay from './components/TimerDisplay.vue';
 import ModeSelector from './components/ModeSelector.vue';
-import Controls from './components/PomodoroControls.vue.vue';
+import Controls from './components/Controls.vue';
 
 export default {
   name: 'App',
@@ -51,8 +51,8 @@ export default {
   },
   watch: {
     // 監聽模式變化，自動重置時間
-    currentMode() {
-      this.resetTimer(); 
+    currentMode(newMode) {
+      this.resetTimer(); // 切換模式時，重置為新模式的初始時間
     }
   },
   methods: {
@@ -84,11 +84,13 @@ export default {
     handleTimeUp() {
       // 時間結束時的處理
       alert(`${this.currentMode === 'pomodoro' ? '番茄工作' : (this.currentMode === 'shortBreak' ? '短休息' : '長休息')}時間到！`);
-      if (this.currentMode === 'pomodoro') {
-          this.changeMode('shortBreak'); 
-        } else {
-          this.changeMode('pomodoro'); 
-        }
+      // 這裡可以播放音效、發送通知、或自動切換模式
+      // 例如：
+      // if (this.currentMode === 'pomodoro') {
+      //   this.changeMode('shortBreak'); // 工作結束自動轉短休息
+      // } else {
+      //   this.changeMode('pomodoro'); // 休息結束自動轉工作
+      // }
     }
   },
   beforeUnmount() {
@@ -101,43 +103,6 @@ export default {
 </script>
 
 <style>
-:root {
-  /* 從 XD 稿中獲取的顏色 */
-  --color-primary: #B45454; /* 假設是主色調，例如進度條或活躍按鈕 */
-  --color-background: #1A1A1A; /* 假設是整體背景色 */
-  --color-text-light: #F0F0F0; /* 淺色文字 */
-  --color-button-bg: #E0E0E0; /* 按鈕背景色 */
-  --color-button-text: #333; /* 按鈕文字色 */
-
-  /* 從 XD 稿中獲取的字體 */
-  --font-family-display: 'Arial', sans-serif; /* 假設 XD 用了 Arial 或類似字體 */
-  --font-size-timer: 8em; /* 計時器時間的大小 */
-  --font-size-button: 1.2em; /* 按鈕文字大小 */
-}
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-text-light);
-  font-family: var(--font-family-display); /* 應用到全局 */
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-#app {
-  margin-top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px; 
-  padding: 20px;
-}
-
-h1 {
-  color: var(--color-text-light);
-  font-weight: normal; 
-}
-
+/* 這裡放全局樣式，例如 body, #app 的樣式，以及 CSS 變數 */
+/* 請將上方 `b. 全局樣式與顏色變數` 中的 CSS 貼到這裡或單獨的 CSS 檔案 */
 </style>

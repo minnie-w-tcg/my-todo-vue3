@@ -21,7 +21,7 @@
 <script>
 import TimerDisplay from './components/TimerDisplay.vue';
 import ModeSelector from './components/ModeSelector.vue';
-import Controls from './components/PomodoroControls.vue.vue';
+import Controls from './components/Controls.vue';
 
 export default {
   name: 'App',
